@@ -15,9 +15,9 @@
     # Diagonal field of view (dFoV): 60°
     # Universal mounting clip fits laptops, LCD or monitors
 
- camera2 > (left) camera1 > (right)
-       c1  c2
-        ^  ^
-       / \/ \
-      /  /\  \
-     /  /  \  \
+ camera2 > (left) camera1 > (right)  
+       c1  c2  
+        ^  ^  
+       / \/ \  
+      /  /\  \  
+     /  /  \  \  
