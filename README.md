@@ -14,10 +14,11 @@
     # Mic range: Up to 2.74 m
     # Diagonal field of view (dFoV): 60°
     # Universal mounting clip fits laptops, LCD or monitors
-
-&nbspcamera2 > (left) camera1 > (right)<br />
-       c1  c2  <br />
-        ^  ^  <br />
-       / \/ \  <br />
-      /  /\  \  <br />
-     /  /  \  \  <br />
+<pre>
+&nbspcamera2 > (left) camera1 > (right)
+       c1  c2  
+        ^  ^  
+       / \/ \  
+      /  /\  \  
+     /  /  \  \  
+</pre>
