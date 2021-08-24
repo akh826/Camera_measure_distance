@@ -33,6 +33,7 @@
 # Case 1 detect captured image
     python capture.py 
 press 'c' to capture image<br >
+    
     python detect_face_cap_image.py
 
 # Case 2 real time face
