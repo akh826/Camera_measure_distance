@@ -1,5 +1,5 @@
 import cv2
-from detect_distance import GetDistance
+from GetDistance import GetDistance
 
 def main():
     cam_angle = 60
@@ -7,8 +7,6 @@ def main():
 
     font                   = cv2.FONT_HERSHEY_SIMPLEX
     locationText1 = (0,20)
-    locationText2 = (0,60)
-    locationText3 = (0,100)
     fontScale              = 1
     fontColor              = (0,0,255)
     lineType               = 2

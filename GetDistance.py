@@ -7,8 +7,6 @@ import numpy as np
 class GetDistance():
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades +'haarcascade_frontalface_alt.xml')
     
-    
-
     def __init__(self, cam_width,cam_angle):
         self.cam_width = cam_width
         self.cam_angle = cam_angle
@@ -55,7 +53,9 @@ class GetDistance():
         else:
             self.circles1_result = None
             self.circles2_result = None
-            self.distance =0
+            self.distance = 0
+            self.cam1_angle = 0
+            self.cam2_angle = 0
 
     def process_face(self):
         
@@ -87,7 +87,9 @@ class GetDistance():
         else:
             self.faces1 = None
             self.faces2 = None
-            self.distance =0
+            self.distance = 0
+            self.cam1_angle = 0
+            self.cam2_angle = 0
 
     def next_frame(self,img1,img2):
         self.img1 = img1

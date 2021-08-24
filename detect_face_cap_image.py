@@ -1,7 +1,7 @@
 import cv2
 import os
 import sys
-from detect_distance import GetDistance
+from GetDistance import GetDistance
 
 def main():
     font = cv2.FONT_HERSHEY_SIMPLEX
