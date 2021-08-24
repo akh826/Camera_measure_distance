@@ -28,14 +28,14 @@
 
 # Method
 
-# Case 1 detect captured image
+## Case 1 detect captured image
     python capture.py 
 press 'c' to capture image<br >
     
     python detect_face_cap_image.py
 
-# Case 2 real time face
+## Case 2 real time face
     python detect_face_real_time.py
 
-# Case 3 real time circle
+## Case 3 real time circle
     python detect_circle_real_time.py
