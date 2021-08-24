@@ -1,12 +1,11 @@
 # Camera_measure_distance
 
-# Logitech C505 HD WEBCAM 
+# Logitech C505 HD WEBCAM Technical Specifications
     # Height: 31.91 mm
     # Width: 72.91 mm
     # Depth: 66.64 mm
     # Cable length: 2 m
     # Weight: 75 g
-# Technical Specifications
     # Max Resolution: 720p/30fps
     # Camera mega pixel: 1.2
     # Focus type: Fixed
@@ -16,9 +15,9 @@
     # Diagonal field of view (dFoV): 60°
     # Universal mounting clip fits laptops, LCD or monitors
 
-# camera2 > (left) camera1 > (right)
-#       c1  c2
-#        ^  ^
-#       / \/ \
-#      /  /\  \
-#     /  /  \  \
+ camera2 > (left) camera1 > (right)
+       c1  c2
+        ^  ^
+       / \/ \
+      /  /\  \
+     /  /  \  \
