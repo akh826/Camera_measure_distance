@@ -1,5 +1,3 @@
-# Camera_measure_distance
-
 # Logitech C505 HD WEBCAM Technical Specifications
     # Height: 31.91 mm
     # Width: 72.91 mm
