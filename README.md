@@ -16,7 +16,7 @@
     # Universal mounting clip fits laptops, LCD or monitors
 <pre>
  camera2 > (left) camera1 > (right)  
-        |--|<cam_width  
+        |--|&lt;cam_width  
   camera1  camera2
         Ʌ  Ʌ        T
        / \/ \       |
