@@ -1,18 +1,3 @@
-# Logitech C505 HD WEBCAM Technical Specifications
-    # Height: 31.91 mm
-    # Width: 72.91 mm
-    # Depth: 66.64 mm
-    # Cable length: 2 m
-    # Weight: 75 g
-    # Max Resolution: 720p/30fps
-    # Camera mega pixel: 1.2
-    # Focus type: Fixed
-    # Lens type: plastic
-    # Built-in mic: mono
-    # Mic range: Up to 2.74 m
-    # Diagonal field of view (dFoV): 60°
-    # Universal mounting clip fits laptops, LCD or monitors
-
 # Set up
 <pre>
  camera2 > (left) camera1 > (right)  
@@ -39,3 +24,18 @@ press 'c' to capture image<br >
 
 ## Case 3 real time circle
     python detect_circle_real_time.py
+    
+# Logitech C505 HD WEBCAM Technical Specifications
+    # Height: 31.91 mm
+    # Width: 72.91 mm
+    # Depth: 66.64 mm
+    # Cable length: 2 m
+    # Weight: 75 g
+    # Max Resolution: 720p/30fps
+    # Camera mega pixel: 1.2
+    # Focus type: Fixed
+    # Lens type: plastic
+    # Built-in mic: mono
+    # Mic range: Up to 2.74 m
+    # Diagonal field of view (dFoV): 60°
+    # Universal mounting clip fits laptops, LCD or monitors
