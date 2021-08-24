@@ -6,6 +6,8 @@ import numpy as np
 
 class GetDistance():
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades +'haarcascade_frontalface_alt.xml')
+    
+    
 
     def __init__(self, cam_width,cam_angle):
         self.cam_width = cam_width
@@ -14,6 +16,11 @@ class GetDistance():
         self.distance = 0
         self.cam1_angle = 0
         self.cam2_angle = 0
+
+        self.circles1_result = None
+        self.circles2_result = None
+        self.faces1 = None
+        self.faces2 = None
         
 
     def process_circle(self):
@@ -25,9 +32,9 @@ class GetDistance():
             self.circles1_result = np.round(circles1[0, :]).astype("int")
             self.circles2_result = np.round(circles2[0, :]).astype("int")
             x1 = self.circles1_result[0][0]  #circle centre x
-            y1 = self.circles1_result[0][1]  #circle centre y
+            # y1 = self.circles1_result[0][1]  #circle centre y
             x2 = self.circles2_result[0][0]  #circle centre x
-            y2 = self.circles2_result[0][1]  #circle centre y
+            # y2 = self.circles2_result[0][1]  #circle centre y
             self.cam2_angle = (180-self.cam_angle)/2+x2/self.width2*self.cam_angle
             self.cam1_angle = (180-self.cam_angle)/2+x1/self.width1*self.cam_angle
 
@@ -45,32 +52,42 @@ class GetDistance():
                 self.distance = self.cam_width / (math.tan(self.cam2_angle*math.pi/180)-math.tan(self.cam1_angle*math.pi/180))
             except ZeroDivisionError:
                 print("ZeroDivisionError")
+        else:
+            self.circles1_result = None
+            self.circles2_result = None
+            self.distance =0
 
     def process_face(self):
         
         gray1 = cv2.cvtColor(self.img1, cv2.COLOR_BGR2GRAY)
         gray2 = cv2.cvtColor(self.img2, cv2.COLOR_BGR2GRAY)
 
-        faces1 = self.face_cascade.detectMultiScale(gray1, 1.1, 4)
-        faces2 = self.face_cascade.detectMultiScale(gray2, 1.1, 4)
-        
-        self.cam2_angle = (180-self.cam_angle)/2+(faces2[0][0]+faces2[0][3]/2)/self.width2*self.cam_angle
-        self.cam1_angle = (180-self.cam_angle)/2+(faces1[0][0]+faces1[0][3]/2)/self.width1*self.cam_angle
+        self.faces1 = self.face_cascade.detectMultiScale(gray1, 1.1, 4)
+        self.faces2 = self.face_cascade.detectMultiScale(gray2, 1.1, 4)
 
-        if(self.cam2_angle >= 90):
-            self.cam2_angle = -(self.cam2_angle - 90)
+        if(len(self.faces1) and len(self.faces2)):
+        # if(self.faces1 is not None and self.faces2 is not None):
+            self.cam2_angle = (180-self.cam_angle)/2+(self.faces2[0][0]+self.faces2[0][3]/2)/self.width2*self.cam_angle
+            self.cam1_angle = (180-self.cam_angle)/2+(self.faces1[0][0]+self.faces1[0][3]/2)/self.width1*self.cam_angle
+
+            if(self.cam2_angle >= 90):
+                self.cam2_angle = -(self.cam2_angle - 90)
+            else:
+                self.cam2_angle = 90 - self.cam2_angle
+
+            if(self.cam1_angle >= 90):
+                self.cam1_angle = -(self.cam1_angle - 90)
+            else:
+                self.cam1_angle = 90 - self.cam1_angle
+
+            try:
+                self.distance = self.cam_width / (math.tan(self.cam2_angle*math.pi/180)-math.tan(self.cam1_angle*math.pi/180))
+            except ZeroDivisionError:
+                print("ZeroDivisionError")
         else:
-            self.cam2_angle = 90 - self.cam2_angle
-
-        if(self.cam1_angle >= 90):
-            self.cam1_angle = -(self.cam1_angle - 90)
-        else:
-            self.cam1_angle = 90 - self.cam1_angle
-
-        try:
-            self.distance = self.cam_width / (math.tan(self.cam2_angle*math.pi/180)-math.tan(self.cam1_angle*math.pi/180))
-        except ZeroDivisionError:
-            print("ZeroDivisionError")
+            self.faces1 = None
+            self.faces2 = None
+            self.distance =0
 
     def next_frame(self,img1,img2):
         self.img1 = img1
@@ -79,12 +96,12 @@ class GetDistance():
         self.height2, self.width2 = self.img2.shape[:2]
 
     def getface(self):
-        if(len(self.faces1) and len(self.faces2)):
+        if(self.faces1 is not None and self.faces2 is not None):
             return self.faces1,self.faces2
         return None,None
 
     def getcircle(self):
-        if(len(self.circles1_result) and len(self.circles2_result)):
+        if(self.circles1_result is not None and self.circles2_result is not None):
             return self.circles1_result,self.circles2_result
         return None,None
 
@@ -103,9 +120,7 @@ class GetDistance():
 
 def main():
     font = cv2.FONT_HERSHEY_SIMPLEX
-    locationText1 = (0,20)
     locationText2 = (0,60)
-    locationText3 = (0,100)
     fontScale              = 1
     fontColor              = (0,0,255)
     lineType               = 2
@@ -133,8 +148,8 @@ def main():
         img2 = cv2.imread(os.path.join(Cap_image_dir2,cam2_image[no])) 
 
         getdistance.next_frame(img1,img2)
-        getdistance.process_face()
-        # getdistance.process_circle()
+        # getdistance.process_face()
+        getdistance.process_circle()
         getdistance.printdata()
         distance = getdistance.getdistance()
 
