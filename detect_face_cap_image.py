@@ -25,7 +25,7 @@ def main():
 
     cam1_image = os.listdir(Cap_image_dir1)
     cam2_image = os.listdir(Cap_image_dir2)
-    getdistance = GetDistance(cam_width,cam_angle)
+    getdistance = GetDistance(cam_width,cam_angle, 1280, 720)
 
     for no in range(len(cam1_image)):
         img1 = cv2.imread(os.path.join(Cap_image_dir1,cam1_image[no])) 

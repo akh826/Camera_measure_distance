@@ -18,7 +18,7 @@ def main():
     cap2 = cv2.VideoCapture(1,cv2.CAP_DSHOW)
     cap2.set(cv2.CAP_PROP_BUFFERSIZE, 2)
 
-    getdistance = GetDistance(cam_width,cam_angle)
+    getdistance = GetDistance(cam_width,cam_angle, 1280, 720)
     print("Start of loop")
 
     while True:
