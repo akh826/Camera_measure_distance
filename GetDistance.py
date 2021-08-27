@@ -35,20 +35,20 @@ class GetDistance():
         self.x_angle_max = 0 #in radian
         self.y_angle_min = 0 #in radian
         self.y_angle_max = 0 #in radian
-        self.set_diagonal_field_of_view(cam_angle, self.cam_res_width, self.cam_res_height) #720p 1280x720
+        self.set_diagonal_field_of_view(cam_angle) #720p 1280x720
         
-    def set_diagonal_field_of_view(self,angle, cam_res_width, cam_res_height):
+    def set_diagonal_field_of_view(self,angle):
         diagonal_field_of_view = angle
-        Da = math.sqrt(math.pow(cam_res_width,2) + math.pow(cam_res_height,2))
+        Da = math.sqrt(math.pow(self.cam_res_width,2) + math.pow(self.cam_res_height,2))
         hypotenuse = (Da/2) / math.sin(math.radians(diagonal_field_of_view/2))
-        hypotenuse_x = math.sqrt(math.pow(hypotenuse,2)-math.pow(cam_res_width/2,2))
-        hypotenuse_y = math.sqrt(math.pow(hypotenuse,2)-math.pow(cam_res_height/2,2))
+        hypotenuse_x = math.sqrt(math.pow(hypotenuse,2)-math.pow(self.cam_res_width/2,2))
+        hypotenuse_y = math.sqrt(math.pow(hypotenuse,2)-math.pow(self.cam_res_height/2,2))
 
-        self.x_angle_min = math.acos(1 - math.pow(cam_res_width,2) / (2 * math.pow(hypotenuse,2)))
-        self.x_angle_max = math.acos(1 - math.pow(cam_res_width,2) / (2 * math.pow(hypotenuse_x,2)))
+        self.x_angle_min = math.acos(1 - math.pow(self.cam_res_width,2) / (2 * math.pow(hypotenuse,2)))
+        self.x_angle_max = math.acos(1 - math.pow(self.cam_res_width,2) / (2 * math.pow(hypotenuse_x,2)))
 
-        self.y_angle_min = math.acos(1 - math.pow(cam_res_height,2) / (2 * math.pow(hypotenuse,2)))
-        self.y_angle_max = math.acos(1 - math.pow(cam_res_height,2) / (2 * math.pow(hypotenuse_y,2)))
+        self.y_angle_min = math.acos(1 - math.pow(self.cam_res_height,2) / (2 * math.pow(hypotenuse,2)))
+        self.y_angle_max = math.acos(1 - math.pow(self.cam_res_height,2) / (2 * math.pow(hypotenuse_y,2)))
 
         # print(f"{math.degrees(x_angle_max)} {math.degrees(x_angle_min)}")
         # print(f"{math.degrees(y_angle_max)} {math.degrees(y_angle_min)}")
