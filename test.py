@@ -1,8 +1,4 @@
-import argparse
-import dlib
 import cv2
-import os
-import sys
 from GetDistance import GetDistance
 
 def main():
@@ -10,11 +6,11 @@ def main():
     cam_width = 7.2 #width between two cameras in cm  closest=7.2
 
     font                   = cv2.FONT_HERSHEY_SIMPLEX
-    locationText2 = (0,30)
+    locationText1 = (0,20)
     fontScale              = 1
     fontColor              = (0,0,255)
     lineType               = 2
-    
+
     cap1 = cv2.VideoCapture(0,cv2.CAP_DSHOW)
     cap1.set(cv2.CAP_PROP_BUFFERSIZE, 2)
     cap2 = cv2.VideoCapture(1,cv2.CAP_DSHOW)
@@ -27,25 +23,15 @@ def main():
         ret1, img1 = cap1.read()
         ret2, img2 = cap2.read()
 
-        if(ret1 and ret2):
-            getdistance.next_frame(img1,img2)
-            getdistance.process_face_landmarks()
-            distance = getdistance.getdistance()
+        edges = cv2.Canny(image=img1, threshold1=100, threshold2=200)
 
-            nose1,nose2 = getdistance.getnose()
-            if(nose1 is not None and nose2 is not None):
-                cv2.circle(img1, nose1, 3, (0, 0, 255), -1)
-                cv2.circle(img2, nose2, 3, (0, 0, 255), -1)
-
-            cv2.putText(img1,"d = "+str(abs(int(distance))), 
-                locationText2, 
-                font, 
-                fontScale,
-                fontColor,
-                lineType)
-            cv2.imshow('frame1', img1)
+        if ret1:
+            cv2.imshow('frame1', edges)
+        if ret2:
             cv2.imshow('frame2', img2)
 
+        
+        
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break 

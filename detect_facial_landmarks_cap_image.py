@@ -12,7 +12,7 @@ predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 
 # load the input image, resize it, and convert it to grayscale
 font = cv2.FONT_HERSHEY_SIMPLEX
-locationText2 = (0,60)
+locationText2 = (0,30)
 fontScale              = 1
 fontColor              = (0,0,255)
 lineType               = 2
@@ -50,10 +50,11 @@ for no in range(len(cam1_image)):
     for (x, y) in shape2:
         cv2.circle(img2, (x, y), 1, (0, 0, 255), -1)
     
-    cv2.circle(img1, shape1[30], 3, (0, 255, 0), -1)
-    cv2.circle(img2, shape2[30], 3, (0, 255, 0), -1)
+    if(shape1 is not None and shape2 is not None):
+        cv2.circle(img1, shape1[30], 3, (0, 255, 0), -1)
+        cv2.circle(img2, shape2[30], 3, (0, 255, 0), -1)
 
-    cv2.putText(img1,"d = "+str(abs(distance)), 
+    cv2.putText(img1,"d = "+str(abs(int(distance))), 
         locationText2, 
         font, 
         fontScale,
